@@ -82,7 +82,7 @@ function Separator() {
 const ListItem = memo((props: { title: string }) => {
   return (
     <Animated.View
-      entering={SlideInLeft.randomDelay(1000)}
+      entering={SlideInLeft.randomDelay()}
       exiting={SlideOutRight}
       style={styles.listItemCard}>
       <Text style={styles.listItemTitle}>{props.title}</Text>
