@@ -23,6 +23,7 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { createStackNavigator } from '@react-navigation/stack';
 import { nanoid } from 'nanoid/non-secure';
 import Animated, {
+  FadeIn,
   SlideInLeft,
   SlideOutRight,
   ZoomIn,
@@ -34,7 +35,7 @@ const Tab = createBottomTabNavigator();
 const Stack = createStackNavigator();
 const NativeStack = createNativeStackNavigator();
 
-const items = Array.from({ length: 2000 }, () => ({
+const items = Array.from({ length: 1000 }, () => ({
   id: nanoid(),
   title: faker.name.firstName(),
 }));
@@ -86,6 +87,8 @@ function Separator() {
 const slideIn = SlideInLeft.springify().randomDelay();
 const slideOut = SlideOutRight.springify();
 const zoomIn = ZoomIn.springify().delay(300);
+const fadeIn = FadeIn.delay(1000);
+const image = require('./assets/image.jpg');
 
 const ListItem = memo((props: { title: string }) => {
   return (
@@ -96,6 +99,9 @@ const ListItem = memo((props: { title: string }) => {
       <Animated.Text entering={zoomIn} style={styles.listItemTitle}>
         {props.title}
       </Animated.Text>
+      <Animated.View>
+        <Animated.Image source={image} style={styles.image} entering={fadeIn} />
+      </Animated.View>
     </Animated.View>
   );
 });
@@ -166,8 +172,9 @@ const styles = StyleSheet.create({
   },
   listItemCard: {
     flexDirection: 'row',
-    height: 60,
+    height: 160,
     alignItems: 'center',
+    justifyContent: 'space-between',
     width: '100%',
     backgroundColor: '#fff',
     borderRadius: 8,
@@ -176,6 +183,10 @@ const styles = StyleSheet.create({
   },
   listItemTitle: {
     fontSize: 20,
+  },
+  image: {
+    width: 100,
+    height: 100,
   },
 });
 
