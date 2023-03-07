@@ -83,15 +83,17 @@ function Separator() {
   return <View style={{ height: 16 }} />;
 }
 
+const slideIn = SlideInLeft.springify().randomDelay();
+const slideOut = SlideOutRight.springify();
+const zoomIn = ZoomIn.springify().delay(300);
+
 const ListItem = memo((props: { title: string }) => {
   return (
     <Animated.View
-      entering={SlideInLeft.springify().randomDelay()}
-      exiting={SlideOutRight.springify()}
+      entering={slideIn}
+      exiting={slideOut}
       style={styles.listItemCard}>
-      <Animated.Text
-        entering={ZoomIn.springify().delay(300)}
-        style={styles.listItemTitle}>
+      <Animated.Text entering={zoomIn} style={styles.listItemTitle}>
         {props.title}
       </Animated.Text>
     </Animated.View>
