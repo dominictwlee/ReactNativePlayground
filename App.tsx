@@ -22,7 +22,11 @@ import { NavigationContainer, useNavigation } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { createStackNavigator } from '@react-navigation/stack';
 import { nanoid } from 'nanoid/non-secure';
-import Animated, { SlideInLeft, SlideOutRight } from 'react-native-reanimated';
+import Animated, {
+  SlideInLeft,
+  SlideOutRight,
+  ZoomIn,
+} from 'react-native-reanimated';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { faker } from '@faker-js/faker';
 
@@ -82,10 +86,14 @@ function Separator() {
 const ListItem = memo((props: { title: string }) => {
   return (
     <Animated.View
-      entering={SlideInLeft.randomDelay()}
-      exiting={SlideOutRight}
+      entering={SlideInLeft.springify().randomDelay()}
+      exiting={SlideOutRight.springify()}
       style={styles.listItemCard}>
-      <Text style={styles.listItemTitle}>{props.title}</Text>
+      <Animated.Text
+        entering={ZoomIn.springify().delay(300)}
+        style={styles.listItemTitle}>
+        {props.title}
+      </Animated.Text>
     </Animated.View>
   );
 });
