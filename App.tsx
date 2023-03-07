@@ -114,6 +114,7 @@ function SettingsScreenA() {
     <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
       <Text>Settings A</Text>
       <Button title="Go to Settings B" onPress={() => navigate('SettingsB')} />
+      <Button title="Go to Nested Home B" onPress={() => navigate('HomeB')} />
     </View>
   );
 }
