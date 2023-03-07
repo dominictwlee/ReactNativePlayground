@@ -9,8 +9,8 @@
  */
 
 import React from 'react';
-import { Text, View } from 'react-native';
-import { NavigationContainer } from '@react-navigation/native';
+import { Text, View, Button } from 'react-native';
+import { NavigationContainer, useNavigation } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { createStackNavigator } from '@react-navigation/stack';
 
@@ -21,9 +21,11 @@ const Stack = createStackNavigator();
 const NativeStack = createNativeStackNavigator();
 
 function HomeScreenA() {
+  const { navigate } = useNavigation();
   return (
     <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
       <Text>Home A</Text>
+      <Button title="Go to Home B" onPress={() => navigate('HomeB')} />
     </View>
   );
 }
@@ -46,9 +48,12 @@ function HomeStack() {
 }
 
 function SettingsScreenA() {
+  const { navigate } = useNavigation();
+
   return (
     <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
       <Text>Settings A</Text>
+      <Button title="Go to Settings B" onPress={() => navigate('SettingsB')} />
     </View>
   );
 }
@@ -73,7 +78,7 @@ function SettingsStack() {
 const App = () => {
   return (
     <NavigationContainer>
-      <Tab.Navigator>
+      <Tab.Navigator screenOptions={{ headerShown: false }}>
         <Tab.Screen name="Home" component={HomeStack} />
         <Tab.Screen name="Settings" component={SettingsStack} />
       </Tab.Navigator>
