@@ -5,6 +5,7 @@
   "scripts": {
     "android": "adb reverse tcp:8097 tcp:8097 && react-native run-android",
     "ios": "react-native run-ios",
+    "pod": "cd ios && pod install",
     "start": "react-native start",
     "test": "jest",
     "lint": "eslint . --ext .js,.jsx,.ts,.tsx"
